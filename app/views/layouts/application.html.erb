@@ -18,9 +18,15 @@
               <li><%= link_to 'Home', root_path %></li>
               <li><%= link_to 'Edit Profile', edit_shopper_registration_path %></li>
               <li><%= link_to 'Sign Out', destroy_shopper_session_path, method: :delete %></li>
+            <% elsif seller_signed_in? %>
+              <li><%= link_to 'Home', root_path %></li>
+              <li><%= link_to 'Edit Profile', edit_seller_registration_path %></li>
+              <li><%= link_to 'Sign Out', destroy_seller_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to 'Shopper Sign In', new_shopper_session_path %></li>
               <li><%= link_to 'Shopper Sign Up', new_shopper_registration_path %></li>
+              <li><%= link_to 'Seller Sign In', new_seller_session_path %></li>
+              <li><%= link_to 'Seller Sign Up', new_seller_registration_path %></li>
             <% end %>
           </ul>
         </nav>
