@@ -4,6 +4,10 @@
 <p><strong>Description:</strong> <%= @item.details %></p>
 <% if seller_signed_in? && current_seller.email == @item.seller.email%>
   <p><%= link_to "Edit", edit_item_path(@item) %></p>
+  <p><%= link_to "Destroy", item_path(@item), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></p>
 <% end %>
 
 <h3>Seller Contact Info: <%= @item.seller.email %></h3>

@@ -9,5 +9,9 @@
     </div>
     <% if seller_signed_in? && current_seller.email == seller_item.seller.email%>
       <p><%= link_to "Edit", edit_item_path(seller_item) %></p>
+      <p><%= link_to "Destroy", item_path(seller_item), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></p>
     <% end %>
 <% end %>
