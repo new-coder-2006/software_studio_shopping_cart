@@ -1,0 +1,10 @@
+<h1>Your Currently Listed Items</h1>
+
+<% @seller_items.each do |seller_item| %>
+    <div class="seller_item">
+      <h2><%= seller_item.name %></h2>
+      <p><%= seller_item.price %></p>
+      <p><%= seller_item.quantity %></p>
+      <p><%= seller_item.details %></p>
+    </div>
+<% end %>

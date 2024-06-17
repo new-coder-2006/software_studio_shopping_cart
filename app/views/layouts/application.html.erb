@@ -20,6 +20,8 @@
               <li><%= link_to 'Sign Out', destroy_shopper_session_path, method: :delete %></li>
             <% elsif seller_signed_in? %>
               <li><%= link_to 'Home', root_path %></li>
+              <li><%= link_to 'List New Item', new_item_path %></li>
+              <li><%= link_to 'View Your Currently Listed Items', seller_path(current_seller) %></li>
               <li><%= link_to 'Edit Profile', edit_seller_registration_path %></li>
               <li><%= link_to 'Sign Out', destroy_seller_session_path, method: :delete %></li>
             <% else %>
