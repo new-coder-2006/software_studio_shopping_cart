@@ -7,4 +7,7 @@
       <p><%= seller_item.quantity %></p>
       <p><%= seller_item.details %></p>
     </div>
+    <% if seller_signed_in? && current_seller.email == seller_item.seller.email%>
+      <p><%= link_to "Edit", edit_item_path(seller_item) %></p>
+    <% end %>
 <% end %>

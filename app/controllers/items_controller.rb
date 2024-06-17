@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    before_action :authenticate_seller!, only: [:new, :create]
+    before_action :authenticate_seller!, only: [:new, :create, :edit, :update]
 
     def new
         @item = Item.new
@@ -22,6 +22,20 @@ class ItemsController < ApplicationController
     
     def index
         @items = Item.all 
+    end
+
+    def edit
+        @item = Item.find(params[:id])
+    end
+    
+    def update
+        @item = Item.find(params[:id])
+    
+        if @item.update(item_params)
+          redirect_to @item
+        else
+          render :edit, status: :unprocessable_entity
+        end
     end
 
     private

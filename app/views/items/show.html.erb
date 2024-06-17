@@ -2,5 +2,8 @@
 
 <p><strong>Price:</strong> <%= @item.price %></p>
 <p><strong>Description:</strong> <%= @item.details %></p>
+<% if seller_signed_in? && current_seller.email == @item.seller.email%>
+  <p><%= link_to "Edit", edit_item_path(@item) %></p>
+<% end %>
 
 <h3>Seller Contact Info: <%= @item.seller.email %></h3>
