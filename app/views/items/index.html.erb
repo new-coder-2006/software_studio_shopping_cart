@@ -5,6 +5,11 @@
       <h2><%= item.name %></h2>
       <p><%= item.price %></p>
       <p><%= item.seller.email %></p>
+      <% unless item.quantity <= 0 %>
+        <%= button_to 'Add to Cart', add_item_path(item), method: :post, class: "btn btn-primary" %>
+      <% else %>
+        <p>SOLD OUT</p>
+      <% end %>
       <%= button_to "View Details", item_path(item.id), method: :get %>
     </div>
   <% end %>

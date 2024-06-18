@@ -17,6 +17,7 @@
             <% if shopper_signed_in? %>
               <li><%= link_to 'Home', root_path %></li>
               <li><%= link_to 'Edit Profile', edit_shopper_registration_path %></li>
+              <li><%= link_to 'View Your Cart', shopper_path(current_shopper) %></li>
               <li><%= link_to 'Sign Out', destroy_shopper_session_path, method: :delete %></li>
             <% elsif seller_signed_in? %>
               <li><%= link_to 'Home', root_path %></li>

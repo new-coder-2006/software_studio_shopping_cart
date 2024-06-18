@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-    before_action :authenticate_seller!, only: [:new, :create, :edit, :update]
+    before_action :authenticate_seller!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :authenticate_shopper!, only: [:add]
 
     def new
         @item = Item.new
@@ -43,7 +44,18 @@ class ItemsController < ApplicationController
       @item.destroy
   
       redirect_to root_path, status: :see_other
-    end    
+    end  
+    
+    def add
+      @item = Item.find(params[:id])
+      if current_shopper.cart_items << @item
+        flash[:notice] = "Item added to cart"
+      else
+        flash[:alert] = "There was an error adding this item"
+      end
+        
+        redirect_to items_path
+    end
 
     private
 
