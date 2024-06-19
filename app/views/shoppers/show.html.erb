@@ -20,6 +20,9 @@
 <p><%= link_to "Save Cart for Later", save_cart_carting_path(@carted_items), data: {
                     turbo_method: :patch
                   } %></p>
+<h1><%= link_to "Place Order", make_order_carting_path(@carted_items), data: {
+                    turbo_method: :patch
+                  } %></h1>
 
 <h1>Saved for Later</h1>
 

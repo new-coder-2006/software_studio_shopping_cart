@@ -6,4 +6,6 @@ class Shopper < ApplicationRecord
   
   has_many :cartings, dependent: :destroy
   has_many :cart_items, through: :cartings, source: :item
+  has_many :orders, dependent: :destroy
+  has_many :ordered_items, through: :orders, source: :item
 end

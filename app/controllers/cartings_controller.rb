@@ -30,4 +30,18 @@ class CartingsController < ApplicationController
         flash[:notice] = "Cart saved for later"
         redirect_to shopper_path
     end
+
+    def make_order
+        @cartings = Carting.where("shopper_id = ? AND saved_for_later = false", current_shopper.id)
+        @cartings.each do |carting|
+            @ordered_item = Order.new(shopper_id: carting.shopper_id, item_id: carting.item_id)
+            if @ordered_item.save
+                carting.destroy
+            else 
+                render shopper_path, status: :unprocessable_entity
+            end
+        end
+
+        redirect_to order_path
+    end
 end

@@ -1,0 +1,9 @@
+<h1>Your Orders</h1>
+
+<% @ordered_items.each do |ordered_item| %>
+    <div class="ordered_item">
+      <h2><%= ordered_item.name %></h2>
+      <p><%= ordered_item.price %></p>
+      <p><%= ordered_item.created_at %></p>
+    </div>
+<% end %>

@@ -23,8 +23,11 @@ Rails.application.routes.draw do
       patch :move_to_saved
       patch :move_to_cart
       patch :save_cart
+      patch :make_order
     end
   end
+
+  resources :orders, only: [:show]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
