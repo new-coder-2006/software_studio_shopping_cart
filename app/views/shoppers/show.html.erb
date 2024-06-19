@@ -17,6 +17,10 @@
     <% end %>
 <% end %>
 
+<p><%= link_to "Save Cart for Later", save_cart_carting_path(@carted_items), data: {
+                    turbo_method: :patch
+                  } %></p>
+
 <h1>Saved for Later</h1>
 
 <% @carted_items.where(saved_for_later: true).each do |carted_item| %>

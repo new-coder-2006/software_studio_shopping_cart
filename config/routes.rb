@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     member do
       patch :move_to_saved
       patch :move_to_cart
+      patch :save_cart
     end
   end
 
