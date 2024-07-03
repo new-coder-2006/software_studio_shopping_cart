@@ -12,6 +12,13 @@
 
   <body>
     <header>
+        <% if on_index_page? %>
+          <div class="logo">
+            <h1>CART</h1>
+            <%= image_tag 'home-logo.png', alt: 'Shopping Cart App Logo', class: "logo-image"%>
+            <h1>SMART</h1>
+          </div>
+        <% end %>
         <nav>
           <ul>
             <% if shopper_signed_in? %>
