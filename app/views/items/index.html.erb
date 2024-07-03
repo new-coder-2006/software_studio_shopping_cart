@@ -1,20 +1,24 @@
 <body class="index-body">
   <h1 class="index-heading">Current Listings</h1>
 
-  <% @items.each do |item| %>
-      <div class="item">
-        <% if item.image.attached? %>
-          <%= image_tag item.image %>
-        <% end %>
-        <h2><%= item.name %></h2>
-        <p><%= item.price %></p>
-        <p><%= item.seller.email %></p>
-        <% unless item.quantity <= 0 %>
-          <%= button_to 'Add to Cart', add_item_path(item), method: :post, class: "btn btn-primary" %>
-        <% else %>
-          <p>SOLD OUT</p>
-        <% end %>
-        <%= button_to "View Details", item_path(item.id), method: :get %>
-      </div>
-  <% end %>
+  <div class="items">
+    <% @items.each do |item| %>
+        <div class="item">
+          <% if item.image.attached? %>
+            <%= image_tag item.image, class: "item-image" %>
+          <% end %>
+          <h2><%= item.name %></h2>
+          <p><%= item.price %></p>
+          <p><%= item.seller.email %></p>
+          <div class="buttons">
+            <% unless item.quantity <= 0 %>
+              <%= button_to 'Add to Cart', add_item_path(item), method: :post, class: "btn btn-primary" %>
+            <% else %>
+              <p>SOLD OUT</p>
+            <% end %>
+            <%= button_to "View Details", item_path(item.id), method: :get %>
+          </div>
+        </div>
+    <% end %>
+  </div>
 </body>
