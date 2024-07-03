@@ -2,6 +2,9 @@
 
 <% @seller_items.each do |seller_item| %>
     <div class="seller_item">
+      <% if seller_item.image.attached? %>
+        <%= image_tag seller_item.image %>
+      <% end %>
       <h2><%= seller_item.name %></h2>
       <p><%= seller_item.price %></p>
       <p><%= seller_item.quantity %></p>

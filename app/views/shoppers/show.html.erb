@@ -2,6 +2,10 @@
 
 <% @carted_items.where(saved_for_later: false).each do |carted_item| %>
     <div class="carted_item">
+      <% item = Item.find(carted_item.id) %>
+      <% if item.image.attached? %>
+        <%= image_tag item.image %>
+      <% end %>
       <h2><%= carted_item.name %></h2>
       <p><%= carted_item.price %></p>
     </div>
@@ -28,6 +32,10 @@
 
 <% @carted_items.where(saved_for_later: true).each do |carted_item| %>
   <div class="carted_item">
+    <% item = Item.find(carted_item.id) %>
+    <% if item.image.attached? %>
+      <%= image_tag item.image %>
+    <% end %>
     <h2><%= carted_item.name %></h2>
     <p><%= carted_item.price %></p>
   </div>

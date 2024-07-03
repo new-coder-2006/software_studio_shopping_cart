@@ -1,5 +1,8 @@
 <h1><%= @item.name %></h1>
 
+<% if @item.image.attached? %>
+        <%= image_tag @item.image %>
+<% end %>
 <p><strong>Price:</strong> <%= @item.price %></p>
 <p><strong>Description:</strong> <%= @item.details %></p>
 <% if seller_signed_in? && current_seller.email == @item.seller.email%>
