@@ -7,9 +7,8 @@
           <% if item.image.attached? %>
             <%= image_tag item.image, class: "item-image" %>
           <% end %>
-          <h2><%= item.name %></h2>
-          <p><%= item.price %></p>
-          <p><%= item.seller.email %></p>
+          <h2 class="item-name"><%= item.name %></h2>
+          <p class="price"><%= number_to_currency(item.price, unit: "$", precision: 2) %></p>
           <div class="buttons">
             <% unless item.quantity <= 0 %>
               <%= button_to 'Add to Cart', add_item_path(item), method: :post, class: "btn btn-primary" %>
