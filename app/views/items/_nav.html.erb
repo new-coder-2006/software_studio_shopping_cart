@@ -1,0 +1,20 @@
+<nav>
+    <% if shopper_signed_in? %>
+        <%= link_to 'Home', root_path, class:"nav-link" %>
+        <%= link_to 'Edit Profile', edit_shopper_registration_path, class:"nav-link" %>
+        <%= link_to 'View Your Cart', shopper_path(current_shopper), class:"nav-link" %>
+        <%= link_to 'View Your Orders', order_path(current_shopper), class:"nav-link" %>
+        <%= link_to 'Sign Out', destroy_shopper_session_path, method: :delete, class:"nav-link" %>
+    <% elsif seller_signed_in? %>
+        <%= link_to 'Home', root_path, class:"nav-link" %>
+        <%= link_to 'List New Item', new_item_path, class:"nav-link" %>
+        <%= link_to 'View Your Currently Listed Items', seller_path(current_seller), class:"nav-link" %>
+        <%= link_to 'Edit Profile', edit_seller_registration_path, class:"nav-link" %>
+        <%= link_to 'Sign Out', destroy_seller_session_path, method: :delete, class:"nav-link" %>
+    <% else %>
+        <%= link_to 'Shopper Sign In', new_shopper_session_path, class:"nav-link" %>
+        <%= link_to 'Shopper Sign Up', new_shopper_registration_path, class:"nav-link" %>
+        <%= link_to 'Seller Sign In', new_seller_session_path, class:"nav-link" %>
+        <%= link_to 'Seller Sign Up', new_seller_registration_path, class:"nav-link" %>
+    <% end %>
+</nav>

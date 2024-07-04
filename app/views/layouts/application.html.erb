@@ -11,37 +11,64 @@
   </head>
 
   <body>
-    <header>
         <% if on_index_page? %>
-          <div class="logo">
-            <h1>CART</h1>
-            <%= image_tag 'home-logo.png', alt: 'Shopping Cart App Logo', class: "logo-image"%>
-            <h1>SMART</h1>
+          <header class="index-header">
+            <div class="logo">
+              <h1>CART</h1>
+              <%= image_tag 'home-logo.png', alt: 'Shopping Cart App Logo', class: "logo-image"%>
+              <h1>SMART</h1>
+            </div>
+            <nav>
+              <% if shopper_signed_in? %>
+                <%= link_to 'Home', root_path, class:"nav-link" %>
+                <%= link_to 'Edit Profile', edit_shopper_registration_path, class:"nav-link" %>
+                <%= link_to 'View Your Cart', shopper_path(current_shopper), class:"nav-link" %>
+                <%= link_to 'View Your Orders', order_path(current_shopper), class:"nav-link" %>
+                <%= link_to 'Sign Out', destroy_shopper_session_path, method: :delete, class:"nav-link" %>
+              <% elsif seller_signed_in? %>
+                <%= link_to 'Home', root_path, class:"nav-link" %>
+                <%= link_to 'List New Item', new_item_path, class:"nav-link" %>
+                <%= link_to 'View Your Currently Listed Items', seller_path(current_seller), class:"nav-link" %>
+                <%= link_to 'Edit Profile', edit_seller_registration_path, class:"nav-link" %>
+                <%= link_to 'Sign Out', destroy_seller_session_path, method: :delete, class:"nav-link" %>
+              <% else %>
+                <%= link_to 'Shopper Sign In', new_shopper_session_path, class:"nav-link" %>
+                <%= link_to 'Shopper Sign Up', new_shopper_registration_path, class:"nav-link" %>
+                <%= link_to 'Seller Sign In', new_seller_session_path, class:"nav-link" %>
+                <%= link_to 'Seller Sign Up', new_seller_registration_path, class:"nav-link" %>
+              <% end %>
+            </nav>
+          </header>
+        <% else %>
+          <div class="app-name">
+              <h4>CART SMART</h4>
           </div>
+          <header class="main-header">
+            <div class="header-container">
+              <%= image_tag 'home-logo.png', alt: 'Shopping Cart App Logo', class: "small-logo-image"%>
+              <nav class="main-nav">
+                <% if shopper_signed_in? %>
+                  <%= link_to 'Home', root_path, class:"nav-link" %>
+                  <%= link_to 'Edit Profile', edit_shopper_registration_path, class:"nav-link" %>
+                  <%= link_to 'View Your Cart', shopper_path(current_shopper), class:"nav-link" %>
+                  <%= link_to 'View Your Orders', order_path(current_shopper), class:"nav-link" %>
+                  <%= link_to 'Sign Out', destroy_shopper_session_path, method: :delete, class:"nav-link" %>
+                <% elsif seller_signed_in? %>
+                  <%= link_to 'Home', root_path, class:"nav-link" %>
+                  <%= link_to 'List New Item', new_item_path, class:"nav-link" %>
+                  <%= link_to 'View Your Currently Listed Items', seller_path(current_seller), class:"nav-link" %>
+                  <%= link_to 'Edit Profile', edit_seller_registration_path, class:"nav-link" %>
+                  <%= link_to 'Sign Out', destroy_seller_session_path, method: :delete, class:"nav-link" %>
+                <% else %>
+                  <%= link_to 'Shopper Sign In', new_shopper_session_path, class:"nav-link" %>
+                  <%= link_to 'Shopper Sign Up', new_shopper_registration_path, class:"nav-link" %>
+                  <%= link_to 'Seller Sign In', new_seller_session_path, class:"nav-link" %>
+                  <%= link_to 'Seller Sign Up', new_seller_registration_path, class:"nav-link" %>
+                <% end %>
+              </nav>
+            </div>
+          </header>
         <% end %>
-        <nav>
-          <ul>
-            <% if shopper_signed_in? %>
-              <li><%= link_to 'Home', root_path, class:"nav-link" %></li>
-              <li><%= link_to 'Edit Profile', edit_shopper_registration_path, class:"nav-link" %></li>
-              <li><%= link_to 'View Your Cart', shopper_path(current_shopper), class:"nav-link" %></li>
-              <li><%= link_to 'View Your Orders', order_path(current_shopper), class:"nav-link" %></li>
-              <li><%= link_to 'Sign Out', destroy_shopper_session_path, method: :delete, class:"nav-link" %></li>
-            <% elsif seller_signed_in? %>
-              <li><%= link_to 'Home', root_path, class:"nav-link" %></li>
-              <li><%= link_to 'List New Item', new_item_path, class:"nav-link" %></li>
-              <li><%= link_to 'View Your Currently Listed Items', seller_path(current_seller), class:"nav-link" %></li>
-              <li><%= link_to 'Edit Profile', edit_seller_registration_path, class:"nav-link" %></li>
-              <li><%= link_to 'Sign Out', destroy_seller_session_path, method: :delete, class:"nav-link" %></li>
-            <% else %>
-              <li><%= link_to 'Shopper Sign In', new_shopper_session_path, class:"nav-link" %></li>
-              <li><%= link_to 'Shopper Sign Up', new_shopper_registration_path, class:"nav-link" %></li>
-              <li><%= link_to 'Seller Sign In', new_seller_session_path, class:"nav-link" %></li>
-              <li><%= link_to 'Seller Sign Up', new_seller_registration_path, class:"nav-link" %></li>
-            <% end %>
-          </ul>
-        </nav>
-    </header>
     <%= yield %>
   </body>
 </html>

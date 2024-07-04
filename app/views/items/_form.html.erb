@@ -1,42 +1,48 @@
 <%= form_with model: @item do |form| %>
-    <div>
-        <%= form.label :name %><br>
-        <%= form.text_field :name %>
-        <% @item.errors.full_messages_for(:name).each do |message| %>
-            <div><%= message %></div>
-        <% end %>
-    </div>
+    <div class="form-fields">
+        <div class="row-one">
+            <div class="form-field">
+                <%= form.label :name %><br>
+                <%= form.text_field :name, class: "form-input" %>
+                <% @item.errors.full_messages_for(:name).each do |message| %>
+                    <div><%= message %></div>
+                <% end %>
+            </div>
 
-    <div>
-        <%= form.label :price %><br>
-        <%= form.number_field :price, step: 0.01 %>
-        <% @item.errors.full_messages_for(:price).each do |message| %>
-            <div><%= message %></div>
-        <% end %>
-    </div>
+            <div class="form-field">
+                <%= form.label :price %><br>
+                <%= form.number_field :price, step: 0.01, class: "form-input" %>
+                <% @item.errors.full_messages_for(:price).each do |message| %>
+                    <div><%= message %></div>
+                <% end %>
+            </div>
 
-    <div>
-        <%= form.label :quantity %><br>
-        <%= form.number_field :quantity %>
-        <% @item.errors.full_messages_for(:quantity).each do |message| %>
-            <div><%= message %></div>
-        <% end %>
-    </div>
+            <div class="form-field">
+                <%= form.label :quantity %><br>
+                <%= form.number_field :quantity, class: "form-input" %>
+                <% @item.errors.full_messages_for(:quantity).each do |message| %>
+                    <div><%= message %></div>
+                <% end %>
+            </div>
+        </div>
+        
+        <div class="row-two">
+            <div class="form-field">
+                <%= form.label :details %><br>
+                <%= form.text_area :details, class: "form-input" %>
+                <% @item.errors.full_messages_for(:details).each do |message| %>
+                    <div><%= message %></div>
+                <% end %>
+            </div>
 
-    <div>
-        <%= form.label :details %><br>
-        <%= form.text_area :details %>
-        <% @item.errors.full_messages_for(:details).each do |message| %>
-            <div><%= message %></div>
-        <% end %>
-    </div>
-
-    <div>
-        <%= form.label :image %><br>
-        <%= form.file_field :image %>
-        <% @item.errors.full_messages_for(:image).each do |message| %>
-            <div><%= message %></div>
-        <% end %>
+            <div class="form-field">
+                <%= form.label :image %><br>
+                <%= form.file_field :image, class: "form-input" %>
+                <% @item.errors.full_messages_for(:image).each do |message| %>
+                    <div><%= message %></div>
+                <% end %>
+            </div>
+        </div>
     </div>
 
     <div>
