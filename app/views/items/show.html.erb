@@ -1,16 +1,25 @@
-<h1><%= @item.name %></h1>
+<body>
+  <h1 class="item-page-header"><%= @item.name %></h1>
 
-<% if @item.image.attached? %>
-        <%= image_tag @item.image %>
-<% end %>
-<p><strong>Price:</strong> <%= @item.price %></p>
-<p><strong>Description:</strong> <%= @item.details %></p>
-<% if seller_signed_in? && current_seller.email == @item.seller.email%>
-  <p><%= link_to "Edit Listing", edit_item_path(@item) %></p>
-  <p><%= link_to "Remove Listed Item", item_path(@item), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></p>
-<% end %>
+  <div class="item-container">
+    <div class="listing-image-container">
+      <% if @item.image.attached? %>
+              <%= image_tag @item.image, class:"listing-image" %>
+      <% else %>
+              <%= image_tag "default-image.png", alt: "No image of this item is available", class: "listing-image" %>
+      <% end %>
+    </div>
+    <p><strong>Price:</strong> <%= number_to_currency(@item.price, unit: "$", precision: 2) %></p>
+    <p><strong>Description:</strong> <br> <%= @item.details %></p>
+    <h3>Seller Contact Info: <span class="email"><%= @item.seller.email%></span></h3>
+    <% if seller_signed_in? && current_seller.email == @item.seller.email%>
+      <div>
+              <%= button_to "Edit Listing", edit_item_path(@item), method: :get, class: "listing-buttons" %>
+              <%= button_to "Remove", item_path(@item), method: :delete, class: "listing-buttons", data: {
+                            turbo_confirm: "Are you sure?"
+                          } %>
+      </div>
+    <% end %>
 
-<h3>Seller Contact Info: <%= @item.seller.email %></h3>
+  </div>
+</body>
