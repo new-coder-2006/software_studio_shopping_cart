@@ -15,9 +15,8 @@
           <p class="details"><strong>Item Description:</strong><br><%= seller_item.details %></p>
           <% if seller_signed_in? && current_seller.email == seller_item.seller.email%>
             <div class="buttons">
-              <%= button_to "Edit Listing", edit_item_path(seller_item) %>
-              <%= button_to "Remove", item_path(seller_item), data: {
-                            turbo_method: :delete,
+              <%= button_to "Edit Listing", edit_item_path(seller_item), method: :get %>
+              <%= button_to "Remove", item_path(seller_item), method: :delete, data: {
                             turbo_confirm: "Are you sure?"
                           } %>
             </div>
