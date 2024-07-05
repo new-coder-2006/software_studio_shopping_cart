@@ -4,7 +4,8 @@
             <div class="row-one">
                 <div class="form-field">
                     <%= form.label :name %><br>
-                    <%= form.text_field :name, class: "form-input" %>
+                    <%= form.text_field :name, class: "form-input field", required: true %>
+                    <p class="required">*Required</p>
                     <% @item.errors.full_messages_for(:name).each do |message| %>
                         <div><%= message %></div>
                     <% end %>
@@ -12,7 +13,8 @@
 
                 <div class="form-field">
                     <%= form.label :price %><br>
-                    <%= form.number_field :price, step: 0.01, class: "form-input" %>
+                    <%= form.number_field :price, step: 0.01, class: "form-input field", required: true %>
+                    <p class="required">*Required</p>
                     <% @item.errors.full_messages_for(:price).each do |message| %>
                         <div><%= message %></div>
                     <% end %>
@@ -20,7 +22,8 @@
 
                 <div class="form-field">
                     <%= form.label :quantity %><br>
-                    <%= form.number_field :quantity, class: "form-input" %>
+                    <%= form.number_field :quantity, class: "form-input field", required: true %>
+                    <p class="required">*Required</p>
                     <% @item.errors.full_messages_for(:quantity).each do |message| %>
                         <div><%= message %></div>
                     <% end %>
@@ -54,7 +57,7 @@
             <%= form.submit class: "form-button" %>
         </div>
     <% end %>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('file-upload').addEventListener('change', function() {

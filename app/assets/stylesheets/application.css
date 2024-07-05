@@ -55,7 +55,8 @@
  }
 
  textarea {
-    height: 70px;
+    height: 170px;
+    width: 300px;
  }
 
  .app-name {
@@ -88,6 +89,11 @@
     cursor: pointer;
  }
 
+ .field {
+    height: 25px;
+    width: 200px;
+ }
+
  .form-body {
     display: grid;
     place-items: center;
@@ -114,6 +120,13 @@
 
  .form-input {
     margin-top: 10px;
+ }
+
+ .form-input:focus {
+    appearance: none;
+    border: 1px solid aqua;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    outline: none;
  }
 
  .header-container {
@@ -166,6 +179,8 @@
     overflow: hidden;
     line-height: 30px;
     font-family: 'Roboto', sans-serif;
+    word-break: break-word; 
+    hyphens: auto;
  }
 
  .items {
@@ -204,6 +219,12 @@
 
  .price {
     font-size: 24px;
+ }
+
+ .required {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
  }
 
  .small-logo-image {
