@@ -1,20 +1,28 @@
-<h1>Your Currently Listed Items</h1>
+<h1 class="listing-header">Your Currently Listed Items</h1>
 
-<% @seller_items.each do |seller_item| %>
-    <div class="seller_item">
-      <% if seller_item.image.attached? %>
-        <%= image_tag seller_item.image %>
-      <% end %>
-      <h2><%= seller_item.name %></h2>
-      <p><%= seller_item.price %></p>
-      <p><%= seller_item.quantity %></p>
-      <p><%= seller_item.details %></p>
-    </div>
-    <% if seller_signed_in? && current_seller.email == seller_item.seller.email%>
-      <p><%= link_to "Edit Listing", edit_item_path(seller_item) %></p>
-      <p><%= link_to "Remove Listed Item", item_path(seller_item), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></p>
+<div class="listing-container">
+  <div class="items">
+    <% @seller_items.each do |seller_item| %>
+        <div class="listing">
+          <% if seller_item.image.attached? %>
+            <%= image_tag seller_item.image, class: "item-image" %>
+          <% else %>
+            <%= image_tag "default-image.png", alt: "No image of this item is available", class: "item-image" %>
+          <% end %>
+          <h2 class="item-name"><%= seller_item.name %></h2>
+          <p class="price"><%= number_to_currency(seller_item.price, unit: "$", precision: 2) %></p>
+          <p><strong>Quantity: </strong><%= seller_item.quantity %></p>
+          <p class="details"><strong>Item Description:</strong><br><%= seller_item.details %></p>
+          <% if seller_signed_in? && current_seller.email == seller_item.seller.email%>
+            <div class="buttons">
+              <%= button_to "Edit Listing", edit_item_path(seller_item) %>
+              <%= button_to "Remove", item_path(seller_item), data: {
+                            turbo_method: :delete,
+                            turbo_confirm: "Are you sure?"
+                          } %>
+            </div>
+          <% end %>
+        </div>
     <% end %>
-<% end %>
+  </div>
+</div>
