@@ -14,47 +14,58 @@
 
           <div>
             <h2><%= carted_item.name %></h2>
-            <p><%= carted_item.price %></p>
+            <p><%= number_to_currency(carted_item.price, unit: "$", precision: 2) %></p>
           </div>
 
-          <div>
+          <div class="cart-buttons">
             <% if shopper_signed_in? %>
-              <p><%= link_to "Remove From Cart", carting_path(carted_item.carting_id), data: {
-                            turbo_method: :delete,
+              <%= button_to "Remove From Cart", carting_path(carted_item.carting_id), class: "form-button", method: :delete, data: {
                             turbo_confirm: "Are you sure?"
-                          } %></p>
-              <p><%= link_to "Save for Later", move_to_saved_carting_path(carted_item.carting_id), data: {
-                            turbo_method: :patch
-                          } %></p>
+                          } %>
+              <%= button_to "Save for Later", move_to_saved_carting_path(carted_item.carting_id), class: "form-button", method: :patch %>
             <% end %>
           </div>
         </div>
+
+  <% end %>
+  <div class="total-container">
+    <h1 class="total">TOTAL: <%= number_to_currency(@total, unit: "$", precision: 2) %></h1>
+  </div>
+</div>
+
+<div class="cart-bottom-buttons">
+  <%= button_to "Place Order", make_order_carting_path(@carted_items), class: "place-order", method: :patch %>
+  <%= button_to "Save Cart for Later", save_cart_carting_path(@carted_items), class: "form-button", method: :patch %></p>
+</div>
+
+<div class="saved">
+  <h1 class="saved-header">Saved for Later</h1>
+  <% @carted_items.where(saved_for_later: true).each do |carted_item| %>
+    <div class="carted-item">
+      <% item = Item.find(carted_item.id) %>
+      <div>
+        <% if item.image.attached? %>
+          <%= image_tag item.image, class: "item-image" %>
+        <% else %>
+          <%= image_tag "default-image.png", alt: "No image of this item is available", class: "item-image" %>
+        <% end %>
+      </div>
+
+      <div>
+        <h2><%= carted_item.name %></h2>
+        <p><%= number_to_currency(carted_item.price, unit: "$", precision: 2) %></p>
+      </div>
+
+      <div class="cart-buttons">
+        <% if shopper_signed_in? %>
+          <%= button_to "Delete this Item", carting_path(carted_item.carting_id), class: "form-button", method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+          <%= button_to "Move to Cart", move_to_cart_carting_path(carted_item.carting_id), class: "form-button", method: :patch %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<p><%= link_to "Save Cart for Later", save_cart_carting_path(@carted_items), data: {
-                    turbo_method: :patch
-                  } %></p>
-<h1><%= link_to "Place Order", make_order_carting_path(@carted_items), data: {
-                    turbo_method: :patch
-                  } %></h1>
-
-<h1>Saved for Later</h1>
-
-<% @carted_items.where(saved_for_later: true).each do |carted_item| %>
-  <div class="carted_item">
-    <% item = Item.find(carted_item.id) %>
-    <% if item.image.attached? %>
-      <%= image_tag item.image %>
-    <% end %>
-    <h2><%= carted_item.name %></h2>
-    <p><%= carted_item.price %></p>
-  </div>
-
-  <% if shopper_signed_in? %>
-    <p>
-      <%= link_to "Delete this Item", carting_path(carted_item.carting_id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-      <%= link_to "Move to Cart", move_to_cart_carting_path(carted_item.carting_id), data: { turbo_method: :patch } %>
-    </p>
-  <% end %>
-<% end %>
+<div class="saved-bottom-button">
+  <%= button_to "Move all to Cart", move_all_to_cart_carting_path(@carted_items), class: "move-all", method: :patch %>
+</div>

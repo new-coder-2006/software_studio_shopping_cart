@@ -22,6 +22,15 @@ class CartingsController < ApplicationController
         redirect_to shopper_path 
     end
 
+    def move_all_to_cart
+        @cartings = Carting.where("shopper_id = ? AND saved_for_later = true", current_shopper.id)
+        @cartings.each do |carting|
+            carting.update(saved_for_later: false)
+        end
+        flash[:notice] = "Saved items moved to cart"
+        redirect_to shopper_path
+    end
+
     def save_cart
         @cartings = Carting.where("shopper_id = ? AND saved_for_later = false", current_shopper.id)
         @cartings.each do |carting|

@@ -86,7 +86,7 @@
  }
 
  .buttons button:hover, .cancel:hover, .custom-file-button:hover, 
- .form-button:hover, .listing-buttons {
+ .form-button:hover, .listing-buttons:hover, .place-order:hover {
     background-color: rgb(0, 235, 235);
     cursor: pointer;
  }
@@ -98,13 +98,26 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
  }
 
- .cart, .index-body, .item-container, .listing-container {
+ .cart, .index-body, .item-container, .listing-container, .saved {
     background-color: rgb(226, 226, 226);
  }
 
  .cart {
     margin: 40px 60px 0px 60px;
     border-radius: 10px;
+    display: grid;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ }
+
+ .cart-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+ }
+
+ .cart-bottom-buttons, .saved-bottom-button {
+    text-align: center;
  }
 
  .cart-header {
@@ -113,14 +126,16 @@
     font-family: 'Roboto', sans-serif;
     border-radius: 10px 10px 0px 0px;
     padding: 20px;
+    margin: 0;
  }
 
  .carted-item {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr;
-    padding-left: 40px;
-    gap: 20px;
-    padding-bottom: 20px;
+    padding: 20px 0px 20px 40px;
+ }
+
+ .carted-item:not(:last-child) {
     border-bottom: 2px solid darkblue;
  }
 
@@ -309,6 +324,16 @@
     margin-bottom: 10px;
  }
 
+ .move-all, .place-order {
+    border-radius: 5px;
+    border: none;
+    padding: 10px 200px;
+    background-color: aqua;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 30px;
+    margin: 10px; 
+ }
+
  .price {
     font-size: 24px;
  }
@@ -319,6 +344,22 @@
     margin-top: 5px;
  }
 
+ .saved {
+    margin: 40px 60px 10px 60px;
+    border-radius: 10px;
+    display: grid;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ }
+
+ .saved-header {
+    background-color: aqua;
+    color: darkblue;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+    margin: 0;
+ }
+
  .shared {
     margin: 5px 0px;
  }
@@ -327,6 +368,18 @@
     height: auto;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .total {
+    justify-self: end;
+    padding-right: 20px;
+    color: whitesmoke;
+ }
+
+ .total-container {
+    background-color: darkblue;
+    text-align: end;
+    border-radius: 0px 0px 10px 10px;
  }
 
  .unhappy {

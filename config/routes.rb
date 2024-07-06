@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       patch :move_to_cart
       patch :save_cart
       patch :make_order
+      patch :move_all_to_cart
     end
   end
 
