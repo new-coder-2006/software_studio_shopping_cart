@@ -1,25 +1,36 @@
-<h1>Your Cart</h1>
 
-<% @carted_items.where(saved_for_later: false).each do |carted_item| %>
-    <div class="carted_item">
-      <% item = Item.find(carted_item.id) %>
-      <% if item.image.attached? %>
-        <%= image_tag item.image %>
-      <% end %>
-      <h2><%= carted_item.name %></h2>
-      <p><%= carted_item.price %></p>
-    </div>
+<div class="cart">
+  <h1 class="cart-header">Your Cart</h1>
+  <% @carted_items.where(saved_for_later: false).each do |carted_item| %>
+        <% item = Item.find(carted_item.id) %>
+        <div class="carted-item">
+          <div>
+            <% if item.image.attached? %>
+              <%= image_tag item.image, class: "item-image" %>
+            <% else %>
+              <%= image_tag "default-image.png", alt: "No image of this item is available", class: "item-image" %>
+            <% end %>
+          </div>
 
-    <% if shopper_signed_in? %>
-      <p><%= link_to "Remove From Cart", carting_path(carted_item.carting_id), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></p>
-      <p><%= link_to "Save for Later", move_to_saved_carting_path(carted_item.carting_id), data: {
-                    turbo_method: :patch
-                  } %></p>
-    <% end %>
-<% end %>
+          <div>
+            <h2><%= carted_item.name %></h2>
+            <p><%= carted_item.price %></p>
+          </div>
+
+          <div>
+            <% if shopper_signed_in? %>
+              <p><%= link_to "Remove From Cart", carting_path(carted_item.carting_id), data: {
+                            turbo_method: :delete,
+                            turbo_confirm: "Are you sure?"
+                          } %></p>
+              <p><%= link_to "Save for Later", move_to_saved_carting_path(carted_item.carting_id), data: {
+                            turbo_method: :patch
+                          } %></p>
+            <% end %>
+          </div>
+        </div>
+  <% end %>
+</div>
 
 <p><%= link_to "Save Cart for Later", save_cart_carting_path(@carted_items), data: {
                     turbo_method: :patch

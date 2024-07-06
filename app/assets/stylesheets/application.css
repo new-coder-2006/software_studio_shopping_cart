@@ -98,6 +98,32 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
  }
 
+ .cart, .index-body, .item-container, .listing-container {
+    background-color: rgb(226, 226, 226);
+ }
+
+ .cart {
+    margin: 40px 60px 0px 60px;
+    border-radius: 10px;
+ }
+
+ .cart-header {
+    background-color: darkblue;
+    color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px 10px 0px 0px;
+    padding: 20px;
+ }
+
+ .carted-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    padding-left: 40px;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid darkblue;
+ }
+
  .details {
     max-height: 100px;
     text-overflow: ellipsis;
@@ -165,10 +191,6 @@
     display: grid;
     grid-template-columns: 0.1fr 1fr;
     background-color: white;
- }
-
- .index-body, .item-container, .listing-container {
-    background-color: rgb(226, 226, 226);
  }
 
  .index-header {
