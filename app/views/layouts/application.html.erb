@@ -11,6 +11,9 @@
   </head>
 
   <body>
+        <% flash.each do |key, message| %>
+          <div class="flash <%= key %>"><%= message %></div>
+        <% end %>
         <% if on_index_page? %>
           <header class="index-header">
             <div class="logo">

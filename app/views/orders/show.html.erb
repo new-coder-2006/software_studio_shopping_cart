@@ -1,13 +1,27 @@
-<h1>Your Orders</h1>
+<body class="orders-body">
+  <div class="orders">
+    <h1 class="order-header">Your Orders</h1>
 
-<% @ordered_items.each do |ordered_item| %>
-    <div class="ordered_item">
-      <% item = Item.find(ordered_item.id) %>
-      <% if item.image.attached? %>
-        <%= image_tag item.image %>
-      <% end %>
-      <h2><%= ordered_item.name %></h2>
-      <p><%= ordered_item.price %></p>
-      <p><%= ordered_item.created_at %></p>
-    </div>
-<% end %>
+    <% @ordered_items.each do |ordered_item| %>
+        <div class="ordered-item">
+          <div>
+            <% if ordered_item.image.attached? %>
+              <%= image_tag ordered_item.image, class: "item-image" %>
+            <% else %>
+              <%= image_tag "default-image.png", alt: "No image of this item is available", class: "item-image" %>
+            <% end %>
+          </div>
+
+          <div>
+            <h2><%= ordered_item.item_name %></h2>
+            <p><%= number_to_currency(ordered_item.item_price, unit: "$", precision: 2) %></p>
+          </div>
+
+          <div>
+            <h2>Date Ordered:</h2>
+            <p><%= ordered_item.created_at %></p>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</body>

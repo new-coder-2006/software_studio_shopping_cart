@@ -45,6 +45,14 @@
                         <%= form.file_field :image, class: "form-input", id: "file-upload", style: "display: none;" %>
                         <button type="button" class="custom-file-button form-input" onclick="document.getElementById('file-upload').click()">Choose File</button>
                         <span id="file-name">No file chosen</span>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                document.getElementById('file-upload').addEventListener('change', function() {
+                                    var fileName = this.files[0].name;
+                                    document.getElementById('file-name').textContent = fileName;
+                                });
+                            });
+                        </script>
                     </div>
                     <% @item.errors.full_messages_for(:image).each do |message| %>
                         <div><%= message %></div>
@@ -58,12 +66,5 @@
         </div>
     <% end %>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('file-upload').addEventListener('change', function() {
-                var fileName = this.files[0].name;
-                document.getElementById('file-name').textContent = fileName;
-            });
-        });
-    </script>
+    
 </body>

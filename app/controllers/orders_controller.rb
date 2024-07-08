@@ -2,6 +2,6 @@ class OrdersController < ApplicationController
     before_action :authenticate_shopper!, only: [:show]
 
     def show
-        @ordered_items = current_shopper.ordered_items
+        @ordered_items = Order.where("shopper_id = ?", current_shopper.id)
     end
 end
