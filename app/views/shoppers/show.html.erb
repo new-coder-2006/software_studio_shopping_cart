@@ -34,7 +34,7 @@
 </div>
 
 <div class="cart-bottom-buttons">
-  <%= button_to "Place Order", make_order_carting_path(@carted_items), class: "place-order", method: :patch %>
+  <%= button_to "Place Order", make_order_carting_path(@carted_items), class: "place-order", id: "place-order-button", method: :patch %>
   <%= button_to "Save Cart for Later", save_cart_carting_path(@carted_items), class: "form-button", method: :patch %></p>
 </div>
 
